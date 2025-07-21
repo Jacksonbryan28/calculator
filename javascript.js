@@ -1,5 +1,29 @@
 let num1, num2, operator;
 
+// //adds variable to button
+// const button = document.querySelector("button");
+
+// button.addEventListener("click", () => {
+//   gridDensity = prompt("Enter a number between 1-100");
+//   if (gridDensity > 0 && gridDensity <= 100) {
+//     console.log(gridDensity);
+//     resizeGrid(gridDensity);
+//   }
+// });
+
+//Selects all buttons in document
+const button = document.querySelectorAll("button");
+//links display in html
+const display = document.getElementById("display");
+
+//updates display text by adding button ID to string
+button.forEach((button) => {
+  button.addEventListener("click", () => {
+    console.log("button pressed");
+    display.textContent += button.id;
+  });
+});
+
 function operate(num1, operator, num2) {
   return add(num1, num2);
 }
