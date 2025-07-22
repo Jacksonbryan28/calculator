@@ -21,8 +21,34 @@ button.forEach((button) => {
   button.addEventListener("click", () => {
     console.log("button pressed");
     display.textContent += button.id;
+    num1 = display.textContent;
+    console.log(num1);
+    parseInput(num1);
   });
 });
+
+//read if input string is numbers or operators and stores variables accordingly
+function parseInput(input) {
+  //check if string has any operators
+  switch (input.charAt(input.length - 1)) {
+    case "+":
+      operator = "+";
+      console.log(operator);
+      break;
+    case "-":
+      operator = "-";
+      console.log(operator);
+      break;
+    case "⋅":
+      operator = "⋅";
+      console.log(operator);
+      break;
+    case "÷":
+      operator = "÷";
+      console.log(operator);
+      break;
+  }
+}
 
 function operate(num1, operator, num2) {
   return add(num1, num2);
