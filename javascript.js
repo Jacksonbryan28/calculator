@@ -1,4 +1,4 @@
-let num1, num2, operator, currentInput;
+let num1, num2, prevOperator, operator, currentInput;
 
 // //adds variable to button
 //Selects all buttons in document
@@ -24,7 +24,9 @@ function parseInput(input) {
     //If it has a operator in it, set that as the operator variable, and save the previous string
     case "+":
       operator = "+";
-      console.log(operator);
+      num1 = input.slice(0, input.length - 1);
+      currentInput = "";
+      display.textContent = "+";
       break;
     case "-":
       operator = "-";
@@ -40,44 +42,51 @@ function parseInput(input) {
       break;
     //If the operator is = then execute the operate function with the variables as inputs
     case "=":
+      prevOperator = operator;
       operator = "=";
       console.log(operator);
-      operate(num1, operator, num2);
+      //checks that num 1 and operator have values. If they do, save currentInput to num2 and run operate
+      if (num1 != "" && operator != "") {
+        num2 = input.slice(1, input.length - 1);
+        console.log("num2: " + num2);
+        console.log("num 1 typeof: " + typeof num1);
+        console.log("num 2 typeof: " + typeof num2);
+        console.log("operator typeof: " + typeof operator);
+        display.textContent = operate(num1, prevOperator, num2);
+      }
       break;
   }
 }
 
 //takes the inputs and calls the correct math function to execute based on the operator
-function operate(num1, operator, num2) {
+function operate(a, operator, b) {
   let result;
+  console.log("operate function triggered");
+  console.log(operator);
   //decide what function to call based on what operator is set to
   switch (operator) {
     case "+":
-      result = add(num1, num2);
+      console.log("a = " + a);
+      console.log("b = " + b);
+      result = add(a, b);
       break;
     case "-":
-      result = subtract(num1, num2);
+      result = subtract(a, b);
       break;
     case "⋅":
-      result = multiply(num1, num2);
+      result = multiply(a, b);
       break;
     case "÷":
-      result = divide(num1, num2);
+      result = divide(a, b);
       break;
-
-    // //If the operator is = then execute the operate function with the variables as inputs
-    // case "=":
-    //   operator = "=";
-    //   console.log(operator);
-    //   operate(num1, operator, num2);
-    //   break;
   }
+  console.log(result);
   return result;
 }
 
 //operation functions
 function add(a, b) {
-  return a + b;
+  return parseInt(a) + parseInt(b);
 }
 function subtract(a, b) {
   return a - b;
