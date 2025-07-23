@@ -32,24 +32,27 @@ function parseInput(input) {
       operator = "+";
       num1 = input.slice(0, input.length - 1);
       currentInput = "";
-      // display.textContent = "+";
+      display.textContent = "";
       break;
     case "m":
       operator = "m";
       num1 = input.slice(0, input.length - 1);
       currentInput = "";
+      display.textContent = "";
       console.log(operator);
       break;
     case "⋅":
       operator = "⋅";
       num1 = input.slice(0, input.length - 1);
       currentInput = "";
+      display.textContent = "";
       console.log(operator);
       break;
     case "÷":
       operator = "÷";
       num1 = input.slice(0, input.length - 1);
       currentInput = "";
+      display.textContent = "";
       console.log(operator);
       break;
     //If the operator is = then execute the operate function with the variables as inputs
@@ -60,7 +63,8 @@ function parseInput(input) {
       // console.log(operator);
       //checks that num 1 and operator have values. If they do, save currentInput to num2 and run operate
       if (num1 != "" && operator != "") {
-        num2 = input.slice(2, input.length - 1);
+        num2 = input.slice(0, input.length - 1);
+        // num2 = display.textContent;
         // console.log("num2: " + num2);
         // console.log("num 1 typeof: " + typeof num1);
         // console.log("num 2 typeof: " + typeof num2);
