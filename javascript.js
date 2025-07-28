@@ -12,14 +12,18 @@ button.forEach((button) => {
     console.log("button pressed");
     display.textContent += button.id;
     currentInput = display.textContent;
-    // console.log(currentInput);
     parseInput(currentInput);
   });
 });
 
 //read if input string is numbers or operators and stores variables accordingly
 function parseInput(input) {
-  //check if string has any operators
+  // check if input has any operator
+  // if (num1 != "" && operator != "") {
+  //   num2 = num2 = input.slice(0, input.length - 1);
+  //   display.textContent = num2;
+  // }
+
   switch (input.charAt(input.length - 1)) {
     //If it has a operator in it, set that as the operator variable, and save the previous string
     case "c":
@@ -30,29 +34,22 @@ function parseInput(input) {
       display.textContent = "";
     case "+":
       operator = "+";
-      num1 = input.slice(0, input.length - 1);
-      currentInput = "";
-      display.textContent = "";
+      splitFirstNumber(input);
       break;
     case "m":
       operator = "m";
-      num1 = input.slice(0, input.length - 1);
-      currentInput = "";
-      display.textContent = "";
+      splitFirstNumber(input);
       console.log(operator);
       break;
     case "⋅":
       operator = "⋅";
       num1 = input.slice(0, input.length - 1);
-      currentInput = "";
-      display.textContent = "";
+      splitFirstNumber(input);
       console.log(operator);
       break;
     case "÷":
       operator = "÷";
-      num1 = input.slice(0, input.length - 1);
-      currentInput = "";
-      display.textContent = "";
+      splitFirstNumber(input);
       console.log(operator);
       break;
     //If the operator is = then execute the operate function with the variables as inputs
@@ -74,9 +71,15 @@ function parseInput(input) {
         console.log("num 2 : " + num2);
         console.log("operator : " + operator);
         display.textContent = operate(num1, prevOperator, num2);
+        break;
       }
-      break;
   }
+}
+
+function splitFirstNumber(input) {
+  num1 = input.slice(0, input.length - 1);
+  currentInput = "";
+  display.textContent = "";
 }
 
 //takes the inputs and calls the correct math function to execute based on the operator
