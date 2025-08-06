@@ -1,15 +1,18 @@
-let num1, num2, prevOperator, operator, currentInput;
+let num1, num2, prevOperator, operator, currentInput, answer;
+//need to declare currentInput, or there is a undefined input
+currentInput = "";
 
 // //adds variable to button
 //Selects all buttons in document
-const button = document.querySelectorAll("button");
+const buttons = document.querySelectorAll("button");
 //links display in html
 const display = document.getElementById("display");
 
 //updates display text by adding button ID to string
-button.forEach((button) => {
+buttons.forEach((button) => {
   button.addEventListener("click", () => {
     console.log("button pressed");
+
     display.textContent += button.id;
     currentInput = display.textContent;
     parseInput(currentInput);
@@ -18,20 +21,15 @@ button.forEach((button) => {
 
 //read if input string is numbers or operators and stores variables accordingly
 function parseInput(input) {
-  // check if input has any operator
-  // if (num1 != "" && operator != "") {
-  //   num2 = num2 = input.slice(0, input.length - 1);
-  //   display.textContent = num2;
-  // }
-
   switch (input.charAt(input.length - 1)) {
     //If it has a operator in it, set that as the operator variable, and save the previous string
+
+    //make new function to evaluate if you have valid a and b operator, set to current display
+    //a and b are stored correctly
+    //whenver you add a 3rd one set current one to a and then current evaluation becomes b
     case "c":
-      num1 = "";
-      operator = "";
-      prevOperator = "";
-      num2 = "";
-      display.textContent = "";
+      clear();
+      break;
     case "+":
       operator = "+";
       splitFirstNumber(input);
@@ -60,7 +58,8 @@ function parseInput(input) {
       // console.log(operator);
       //checks that num 1 and operator have values. If they do, save currentInput to num2 and run operate
       if (num1 != "" && operator != "") {
-        num2 = input.slice(0, input.length - 1);
+        // num2 = input.slice(0, input.length - 1);
+
         // num2 = display.textContent;
         // console.log("num2: " + num2);
         // console.log("num 1 typeof: " + typeof num1);
@@ -71,14 +70,42 @@ function parseInput(input) {
         console.log("num 2 : " + num2);
         console.log("operator : " + operator);
         display.textContent = operate(num1, prevOperator, num2);
-        break;
+      } else {
+        console.log(
+          "Please input two numbers and an operator before hitting '='."
+        );
       }
+      break;
+    default:
+      //if num1 and operator have values, num2 gets set to the current input
+      if (num1 != "" && operator != "") {
+        num2 = input;
+
+        display.textContent = num2;
+      }
+      //if not, num 1 = input
+      else {
+        num1 = input;
+
+        display.textContent = num1;
+      }
+    //case default if its not operator save it as a number if a is empty then save as b
   }
 }
 
 function splitFirstNumber(input) {
   num1 = input.slice(0, input.length - 1);
   currentInput = "";
+  display.textContent = "";
+}
+
+function clear() {
+  num1 = "";
+  operator = "";
+  prevOperator = "";
+  num2 = "";
+  currentInput = "";
+  answer = "";
   display.textContent = "";
 }
 
