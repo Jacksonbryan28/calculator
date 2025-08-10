@@ -26,12 +26,21 @@ buttons.forEach((button) => {
 
 //read if input string is numbers or operators and stores variables accordingly
 function parseInput(input) {
-  if (operated == true) {
-    console.log("Answer in operated = " + answer);
+  if (num1 != "" && num2 != "" && operator != "" && isOperator(input)) {
+    display.textContent = operate(num1, operator, num2);
+    currentInput = "";
+    answer = operate(num1, operator, num2);
     num1 = answer;
     num2 = "";
-    operated = false;
+    prevOperator = operator;
+    operator = input.charAt(input.length - 1);
   }
+  // else if (operated == true ) {
+  //   console.log("Answer in operated = " + answer);
+  //   num1 = answer;
+  //   num2 = "";
+  //   operated = false;
+  // }
   switch (input.charAt(input.length - 1)) {
     //If it has a operator in it, set that as the operator variable, and save the previous string
 
@@ -141,10 +150,9 @@ function isOperator(input) {
     case "÷":
       isOperator = true;
       break;
-
-    case "=":
-      isOperator = true;
-      break;
+    // case "=":
+    //   isOperator = true;
+    //   break;
     default:
       isOperator = false;
       break;
