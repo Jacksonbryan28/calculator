@@ -126,6 +126,32 @@ function splitFirstNumber(input) {
   // display.textContent = "";
 }
 
+function isOperator(input) {
+  let isOperator;
+  switch (input.charAt(input.length - 1)) {
+    case "+":
+      isOperator = true;
+      break;
+    case "m":
+      isOperator = true;
+      break;
+    case "⋅":
+      isOperator = true;
+      break;
+    case "÷":
+      isOperator = true;
+      break;
+
+    case "=":
+      isOperator = true;
+      break;
+    default:
+      isOperator = false;
+      break;
+  }
+  return isOperator;
+}
+
 function clear() {
   num1 = "";
   operator = "";
@@ -190,3 +216,13 @@ function divide(a, b) {
 // console.log(operate(20, "-", 10));
 // console.log(operate(20, "⋅", 10));
 // console.log(operate(20, "÷", 10));
+
+// testing isOperator function
+
+// console.log(isOperator("+"));
+// console.log(isOperator("m"));
+// console.log(isOperator("⋅"));
+// console.log(isOperator("÷"));
+// console.log(isOperator("string ending with operator+"));
+// console.log(isOperator("149294="));
+// console.log(isOperator("24920"));
