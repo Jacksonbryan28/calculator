@@ -1,6 +1,9 @@
-let num1, num2, prevOperator, operator, currentInput, answer;
+let num1, num2, prevOperator, operator, currentInput, answer, operated;
 //need to declare currentInput, or there is a undefined input
 currentInput = "";
+num1 = "";
+operator = "";
+operated = false;
 
 // //adds variable to button
 //Selects all buttons in document
@@ -13,14 +16,22 @@ buttons.forEach((button) => {
   button.addEventListener("click", () => {
     console.log("button pressed");
 
-    display.textContent += button.id;
-    currentInput = display.textContent;
+    // display.textContent += button.id;
+
+    currentInput += button.id;
+    // currentInput = display.textContent;
     parseInput(currentInput);
   });
 });
 
 //read if input string is numbers or operators and stores variables accordingly
 function parseInput(input) {
+  if (operated == true) {
+    console.log("Answer in operated = " + answer);
+    num1 = answer;
+    num2 = "";
+    operated = false;
+  }
   switch (input.charAt(input.length - 1)) {
     //If it has a operator in it, set that as the operator variable, and save the previous string
 
@@ -32,22 +43,26 @@ function parseInput(input) {
       break;
     case "+":
       operator = "+";
-      splitFirstNumber(input);
+      currentInput = "";
+      // splitFirstNumber(input);
       break;
     case "m":
       operator = "m";
-      splitFirstNumber(input);
+      currentInput = "";
+      // splitFirstNumber(input);
       console.log(operator);
       break;
     case "⋅":
       operator = "⋅";
-      num1 = input.slice(0, input.length - 1);
-      splitFirstNumber(input);
+      currentInput = "";
+      // num1 = input.slice(0, input.length - 1);
+      // splitFirstNumber(input);
       console.log(operator);
       break;
     case "÷":
       operator = "÷";
-      splitFirstNumber(input);
+      currentInput = "";
+      // splitFirstNumber(input);
       console.log(operator);
       break;
     //If the operator is = then execute the operate function with the variables as inputs
@@ -55,6 +70,7 @@ function parseInput(input) {
       //stores the value of what function to call by saving the operator
       prevOperator = operator;
       operator = "=";
+      currentInput = "";
       // console.log(operator);
       //checks that num 1 and operator have values. If they do, save currentInput to num2 and run operate
       if (num1 != "" && operator != "") {
@@ -70,6 +86,8 @@ function parseInput(input) {
         console.log("num 2 : " + num2);
         console.log("operator : " + operator);
         display.textContent = operate(num1, prevOperator, num2);
+        answer = operate(num1, prevOperator, num2);
+        console.log("answer variable: " + answer);
       } else {
         console.log(
           "Please input two numbers and an operator before hitting '='."
@@ -78,6 +96,7 @@ function parseInput(input) {
       break;
     default:
       //if num1 and operator have values, num2 gets set to the current input
+      console.log("default");
       if (num1 != "" && operator != "") {
         num2 = input;
 
@@ -91,12 +110,20 @@ function parseInput(input) {
       }
     //case default if its not operator save it as a number if a is empty then save as b
   }
+  console.log("---parseInput called---");
+  console.log("num1: " + num1);
+  console.log("num2: " + num2);
+  console.log("operator: " + operator);
+  console.log("answer: " + answer);
+  console.log("operated: " + operated);
+  console.log("prevOperator: " + prevOperator);
+  console.log("------------------------");
 }
 
 function splitFirstNumber(input) {
   num1 = input.slice(0, input.length - 1);
-  currentInput = "";
-  display.textContent = "";
+  // currentInput = "";
+  // display.textContent = "";
 }
 
 function clear() {
@@ -106,6 +133,7 @@ function clear() {
   num2 = "";
   currentInput = "";
   answer = "";
+  operated = false;
   display.textContent = "";
 }
 
@@ -128,7 +156,8 @@ function operate(a, operator, b) {
       result = divide(a, b);
       break;
   }
-  console.log(result);
+  console.log("operate result in function: " + result);
+  operated = true;
   return result;
 }
 
