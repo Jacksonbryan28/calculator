@@ -2,6 +2,7 @@ let num1, num2, prevOperator, operator, currentInput, answer, operated;
 //need to declare currentInput, or there is a undefined input
 currentInput = "";
 num1 = "";
+num2 = "";
 operator = "";
 operated = false;
 
@@ -35,12 +36,20 @@ function parseInput(input) {
     prevOperator = operator;
     operator = input.charAt(input.length - 1);
   }
-  // else if (operated == true ) {
-  //   console.log("Answer in operated = " + answer);
-  //   num1 = answer;
+  // else if (operated == true) {
+  //   num1 = "";
   //   num2 = "";
+  //   prevOperator = "";
+  //   operator = "";
+  //   currentInput = "";
   //   operated = false;
   // }
+  else if (operated == true) {
+    console.log("Answer in operated = " + answer);
+    num1 = answer;
+    num2 = "";
+    operated = false;
+  }
   switch (input.charAt(input.length - 1)) {
     //If it has a operator in it, set that as the operator variable, and save the previous string
 
@@ -82,7 +91,7 @@ function parseInput(input) {
       currentInput = "";
       // console.log(operator);
       //checks that num 1 and operator have values. If they do, save currentInput to num2 and run operate
-      if (num1 != "" && operator != "") {
+      if (num1 != "" && operator != "" && num2 != "") {
         // num2 = input.slice(0, input.length - 1);
 
         // num2 = display.textContent;
@@ -98,9 +107,19 @@ function parseInput(input) {
         answer = operate(num1, prevOperator, num2);
         console.log("answer variable: " + answer);
       } else {
+        operator = "";
         console.log(
           "Please input two numbers and an operator before hitting '='."
         );
+        display.textContent =
+          "Please input two numbers and an operator before hitting '='.";
+        num1 = "";
+        operator = "";
+        prevOperator = "";
+        num2 = "";
+        currentInput = "";
+        answer = "";
+        operated = false;
       }
       break;
     default:
