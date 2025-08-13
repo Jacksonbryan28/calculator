@@ -27,15 +27,34 @@ buttons.forEach((button) => {
 
 //read if input string is numbers or operators and stores variables accordingly
 function parseInput(input) {
+  if (
+    num1 != "" &&
+    num2 != "" &&
+    operator == "=" &&
+    isOperator(input) == false
+  ) {
+    console.log("----------");
+    console.log("Cleared since = was the last operator and a number is hit");
+    console.log("----------");
+    clear();
+  }
+  //If numbers have value a operator has been used and the next input is an operator, num 1 is the calculation of the two current numbers
   if (num1 != "" && num2 != "" && operator != "" && isOperator(input)) {
+    console.log("----------");
+    console.log("USED PREV ANSWER AS NUM 1");
+    console.log("----------");
+
     display.textContent = operate(num1, operator, num2);
     currentInput = "";
+
     answer = operate(num1, operator, num2);
     num1 = answer;
     num2 = "";
     prevOperator = operator;
     operator = input.charAt(input.length - 1);
   }
+  //if numbers
+
   // else if (operated == true) {
   //   num1 = "";
   //   num2 = "";
@@ -44,12 +63,15 @@ function parseInput(input) {
   //   currentInput = "";
   //   operated = false;
   // }
-  else if (operated == true) {
-    console.log("Answer in operated = " + answer);
-    num1 = answer;
-    num2 = "";
-    operated = false;
-  }
+
+  //if operated is tue
+  // else if (operated == true) {
+  //   console.log("Answer in operated = " + answer);
+  //   num1 = answer;
+  //   num2 = "";
+  //   operated = false;
+  // }
+
   switch (input.charAt(input.length - 1)) {
     //If it has a operator in it, set that as the operator variable, and save the previous string
 
@@ -132,13 +154,15 @@ function parseInput(input) {
       }
       //if not, num 1 = input
       else {
+        console.log("number 1 added to");
         num1 = input;
 
         display.textContent = num1;
       }
     //case default if its not operator save it as a number if a is empty then save as b
   }
-  console.log("---parseInput called---");
+  console.log("-----------------------");
+  console.log("parseInput called");
   console.log("num1: " + num1);
   console.log("num2: " + num2);
   console.log("operator: " + operator);
@@ -222,8 +246,6 @@ function subtract(a, b) {
   return parseInt(a) - parseInt(b);
 }
 function multiply(a, b) {
-  console.log(a);
-  console.log(b);
   return parseInt(a) * parseInt(b);
 }
 function divide(a, b) {
