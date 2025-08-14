@@ -27,6 +27,10 @@ buttons.forEach((button) => {
 
 //read if input string is numbers or operators and stores variables accordingly
 function parseInput(input) {
+  console.log("*****************************");
+  console.log("input at start of function: " + input);
+  console.log("currentInput at start of function: " + currentInput);
+  console.log("*****************************");
   if (
     num1 != "" &&
     num2 != "" &&
@@ -49,6 +53,7 @@ function parseInput(input) {
 
     answer = operate(num1, operator, num2);
     num1 = answer;
+    console.log("num1 line 51: " + num1);
     num2 = "";
     prevOperator = operator;
     operator = input.charAt(input.length - 1);
@@ -110,7 +115,9 @@ function parseInput(input) {
       //stores the value of what function to call by saving the operator
       prevOperator = operator;
       operator = "=";
+
       currentInput = "";
+
       // console.log(operator);
       //checks that num 1 and operator have values. If they do, save currentInput to num2 and run operate
       if (num1 != "" && operator != "" && num2 != "") {
@@ -136,6 +143,8 @@ function parseInput(input) {
         display.textContent =
           "Please input two numbers and an operator before hitting '='.";
         num1 = "";
+        console.log("num1 line 139: " + num1);
+        //if this one, make operator = "" at the top?
         operator = "";
         prevOperator = "";
         num2 = "";
@@ -154,8 +163,14 @@ function parseInput(input) {
       }
       //if not, num 1 = input
       else {
-        console.log("number 1 added to");
+        // console.log("number 1 added to");
+        console.log("input before num 1 = input at 160: input: " + input);
         num1 = input;
+
+        //this is the only place this is used to fix duplicate number bug. Maybe see if this should be handled somewhere else?
+        currentInput = num1;
+
+        console.log("num 1 in the default switch statement line 162: " + num1);
 
         display.textContent = num1;
       }
@@ -163,6 +178,8 @@ function parseInput(input) {
   }
   console.log("-----------------------");
   console.log("parseInput called");
+  console.log("input: " + input);
+  console.log("currentInput at end of function: " + currentInput);
   console.log("num1: " + num1);
   console.log("num2: " + num2);
   console.log("operator: " + operator);
@@ -174,6 +191,7 @@ function parseInput(input) {
 
 function splitFirstNumber(input) {
   num1 = input.slice(0, input.length - 1);
+  console.log("num1 in splitFirstNumber function line 180: " + num1);
   // currentInput = "";
   // display.textContent = "";
 }
@@ -205,6 +223,7 @@ function isOperator(input) {
 
 function clear() {
   num1 = "";
+  console.log("num1 in clear function line 212: " + num1);
   operator = "";
   prevOperator = "";
   num2 = "";
