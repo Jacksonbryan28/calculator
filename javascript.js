@@ -99,25 +99,21 @@ function parseInput(input) {
     case "+":
       operator = "+";
       currentInput = "";
-      // splitFirstNumber(input);
       break;
     case "m":
       operator = "m";
       currentInput = "";
-      // splitFirstNumber(input);
       console.log(operator);
       break;
     case "⋅":
       operator = "⋅";
       currentInput = "";
       // num1 = input.slice(0, input.length - 1);
-      // splitFirstNumber(input);
       console.log(operator);
       break;
     case "÷":
       operator = "÷";
       currentInput = "";
-      // splitFirstNumber(input);
       console.log(operator);
       break;
     //If the operator is = then execute the operate function with the variables as inputs
@@ -197,13 +193,6 @@ function parseInput(input) {
   console.log("operated: " + operated);
   console.log("prevOperator: " + prevOperator);
   console.log("------------------------");
-}
-
-function splitFirstNumber(input) {
-  num1 = input.slice(0, input.length - 1);
-  console.log("num1 in splitFirstNumber function line 180: " + num1);
-  // currentInput = "";
-  // display.textContent = "";
 }
 
 function isOperator(input) {
