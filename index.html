@@ -8,40 +8,45 @@
     <script src="javascript.js" defer></script>
   </head>
   <body>
-    <div class="display" id="display"></div>
+    <div class="wrapper">
+      <div>
+        <div class="display" id="display"></div>
 
-    <div>
-      <button id="7">7</button>
-      <button id="8">8</button>
-      <button id="9">9</button>
-    </div>
+        <div class="hflex">
+          <div>
+            <div>
+              <button class="button" id="7">7</button>
+              <button class="button" id="8">8</button>
+              <button class="button" id="9">9</button>
+            </div>
+            <div>
+              <button class="button" id="4">4</button>
+              <button class="button" id="5">5</button>
+              <button class="button" id="6">6</button>
+            </div>
+            <div>
+              <button class="button" id="1">1</button>
+              <button class="button" id="2">2</button>
+              <button class="button" id="3">3</button>
+            </div>
+            <div>
+              <button class="button grow" id="0">0</button>
+            </div>
+          </div>
 
-    <div>
-      <button id="4">4</button>
-      <button id="5">5</button>
-      <button id="6">6</button>
-    </div>
+          <div class="operators">
+            <button class="button primary" id="+">+</button>
+            <button class="button primary" id="m">-</button>
+            <button class="button primary" id="⋅">⋅</button>
+            <button class="button primary" id="÷">÷</button>
+          </div>
+        </div>
 
-    <div>
-      <button id="1">1</button>
-      <button id="2">2</button>
-      <button id="3">3</button>
-    </div>
-
-    <div>
-      <button id="0">0</button>
-    </div>
-
-    <div>
-      <button id="+">+</button>
-      <button id="m">-</button>
-      <button id="⋅">⋅</button>
-      <button id="÷">÷</button>
-    </div>
-
-    <div>
-      <button id="c">clear</button>
-      <button id="=">=</button>
+        <div class="hflex">
+          <button class="button" id="c">clear</button>
+          <button class="button grow" id="=">=</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
