@@ -12,6 +12,7 @@ body {
   border-radius: 8px;
   background-color: color(#e8e8e8);
   text-wrap: wrap;
+  max-width: 214px;
 }
 
 .wrapper {
