@@ -48,16 +48,26 @@ function parseInput(input) {
     console.log("USED PREV ANSWER AS NUM 1");
     console.log("----------");
 
-    display.textContent = operate(num1, operator, num2);
-    currentInput = "";
+    console.log("Answer in else if statment: " + answer);
+    console.log("Operator: " + operator);
+    console.log("prevOperator " + prevOperator);
 
-    answer = operate(num1, operator, num2);
-    num1 = answer;
-    console.log("num1 line 51: " + num1);
-    num2 = "";
-    prevOperator = operator;
-    operator = input.charAt(input.length - 1);
+    if (operator == "=") {
+      display.textContent = operate(num1, prevOperator, num2);
+      answer = operate(num1, prevOperator, num2);
+      num1 = answer;
+      operator = input.charAt(input.length - 1);
+      currentInput = "";
+    } else {
+      display.textContent = operate(num1, operator, num2);
+      answer = operate(num1, operator, num2);
+      num1 = answer;
+      console.log("num1 line 51: " + num1);
+      num2 = "";
+      prevOperator = operator;
+    }
   }
+
   //if numbers
 
   // else if (operated == true) {
