@@ -68,31 +68,8 @@ function parseInput(input) {
     }
   }
 
-  //if numbers
-
-  // else if (operated == true) {
-  //   num1 = "";
-  //   num2 = "";
-  //   prevOperator = "";
-  //   operator = "";
-  //   currentInput = "";
-  //   operated = false;
-  // }
-
-  //if operated is tue
-  // else if (operated == true) {
-  //   console.log("Answer in operated = " + answer);
-  //   num1 = answer;
-  //   num2 = "";
-  //   operated = false;
-  // }
-
   switch (input.charAt(input.length - 1)) {
-    //If it has a operator in it, set that as the operator variable, and save the previous string
-
-    //make new function to evaluate if you have valid a and b operator, set to current display
-    //a and b are stored correctly
-    //whenver you add a 3rd one set current one to a and then current evaluation becomes b
+    //If it has a operator in it, set that as the operator variable, and save the string as a number
     case "c":
       clear();
       break;
@@ -118,30 +95,23 @@ function parseInput(input) {
       break;
     //If the operator is = then execute the operate function with the variables as inputs
     case "=":
-      //stores the value of what function to call by saving the operator
+      //stores the value of what operation to call by saving the operator
       prevOperator = operator;
       operator = "=";
 
       currentInput = "";
 
-      // console.log(operator);
       //checks that num 1 and operator have values. If they do, save currentInput to num2 and run operate
       if (num1 != "" && operator != "" && num2 != "") {
-        // num2 = input.slice(0, input.length - 1);
-
-        // num2 = display.textContent;
-        // console.log("num2: " + num2);
-        // console.log("num 1 typeof: " + typeof num1);
-        // console.log("num 2 typeof: " + typeof num2);
-        // console.log("operator typeof: " + typeof operator);
-
         console.log("num 1 : " + num1);
         console.log("num 2 : " + num2);
         console.log("operator : " + operator);
+
         display.textContent = operate(num1, prevOperator, num2);
         answer = operate(num1, prevOperator, num2);
         console.log("answer variable: " + answer);
       } else {
+        //if there are not 2 numbers and a operator, return error message in display and clear info (minus display)
         operator = "";
         console.log(
           "Please input two numbers and an operator before hitting '='."
@@ -149,8 +119,6 @@ function parseInput(input) {
         display.textContent =
           "Please input two numbers and an operator before hitting '='.";
         num1 = "";
-        console.log("num1 line 139: " + num1);
-        //if this one, make operator = "" at the top?
         operator = "";
         prevOperator = "";
         num2 = "";
